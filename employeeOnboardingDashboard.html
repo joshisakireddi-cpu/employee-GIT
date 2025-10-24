@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Employee Onboarding Dashboard" icon-name="standard:employee">
+        <div class="slds-p-around_medium">
+            <lightning-input type="text" label="Search Employee" value={searchKey} onchange={handleSearch}></lightning-input>
+        </div>
+
+        <template if:true={employees}>
+            <lightning-datatable
+                key-field="Id"
+                data={employees}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Employee Background & Task Status" icon-name="action:approval">
+        <div class="slds-p-around_medium">
+            <lightning-input
+                label="Enter Employee Name"
+                value={employeeName}
+                onchange={handleNameChange}>
+            </lightning-input>
+
+            <lightning-button
+                variant="brand"
+                label="Check Background & Tasks"
+                class="slds-m-top_medium"
+                onclick={handleCheck}>
+            </lightning-button>
+
+            <template if:true={result}>
+                <div class="slds-m-top_large slds-box slds-theme_default">
+                    <p><b>Name:</b> {result.employeeName}</p>
+                    <p><b>Email:</b> {result.email}</p>
+                    <p><b>Start Date:</b> {result.startDate}</p>
+
+                    <div class="slds-m-top_medium">
+                        <p><b>Task Summary:</b></p>
+                        <ul>
+                            <li>✅ Completed: {result.completed}</li>
+                            <li>🕓 In Progress: {result.inProgress}</li>
+                            <li>⏳ Pending: {result.pending}</li>
+                        </ul>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={errorMessage}>
+                <div class="slds-box slds-theme_error slds-m-top_medium">
+                    {errorMessage}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
