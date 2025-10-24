@@ -13,10 +13,6 @@ It includes task assignment, progress tracking, background check integration, an
 - Salesforce Object Model (Custom Objects)
 - REST API Integration
 - Git & GitHub for version control
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/<your-username>/employee-onboarding-app.git
 
 ---
 
@@ -31,4 +27,4 @@ How to use the app.
 
 ## Author
 - Name: SAKIREDDI JOSHIBABU
-- GitHub: [https://github.com/your-username](https:/joshisakireddi-cpu/github.com/)
+- GitHub: [https://github.com/joshisakireddi-cpu](https:/joshisakireddi-cpu/github.com/)
