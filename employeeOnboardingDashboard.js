@@ -1,31 +1,51 @@
-import { LightningElement, wire, track } from 'lwc';
-import getEmployeesWithTasks from '@salesforce/apex/EmployeeDashboardController.getEmployeesWithTasks';
+import { LightningElement, wire } from 'lwc';
+import getEmployeeData from '@salesforce/apex/EmployeeDashboardController.getEmployeeData';
 
 export default class EmployeeOnboardingDashboard extends LightningElement {
-    @track searchKey = '';
-    @track employees;
-    @track error;
+    employees = [];
+    error;
 
-    columns = [
-        { label: 'Employee Name', fieldName: 'Name' },
-        { label: 'Start Date', fieldName: 'Start_Date__c', type: 'date' },
-        { label: 'Total Tasks', fieldName: 'TotalTasks', type: 'number' },
-        { label: 'Completed Tasks', fieldName: 'CompletedTasks', type: 'number' },
-        { label: 'Pending Tasks', fieldName: 'PendingTasks', type: 'number' }
-    ];
-
-    @wire(getEmployeesWithTasks, { searchKey: '$searchKey' })
-    wiredEmployees({ error, data }) {
+    // Wire Apex method
+    @wire(getEmployeeData)
+    wiredEmployees({ data, error }) {
         if (data) {
-            this.employees = data;
+            this.employees = data.map(emp => {
+                const tasks = emp.Onboarding_Tasks__r 
+                    ? emp.Onboarding_Tasks__r.map(task => ({
+                        Id: task.Id,
+                        Name: task.Name,
+                        Status: task.Status__c,
+                        DueDate: task.Due_Date__c,
+                        statusColor: this.getStatusColor(task.Status__c)
+                    })) 
+                    : [];
+
+                return {
+                    Id: emp.Id,
+                    Name: emp.Name,
+                    Email: emp.Email__c,
+                    Department: emp.Department__c,
+                    Tasks: tasks
+                };
+            });
             this.error = undefined;
         } else if (error) {
-            this.error = error.body.message;
-            this.employees = undefined;
+            this.error = error;
+            this.employees = [];
         }
     }
 
-    handleSearch(event) {
-        this.searchKey = event.target.value;
+    // Set background color based on task status
+    getStatusColor(status) {
+        switch (status) {
+            case 'Completed':
+                return 'background-color: #2ecc71; color: white;'; // green
+            case 'Pending':
+                return 'background-color: #f1c40f; color: black;'; // yellow
+            case 'In Progress':
+                return 'background-color: #3498db; color: white;'; // blue
+            default:
+                return 'background-color: #bdc3c7; color: black;'; // gray
+        }
     }
 }
