@@ -57,6 +57,7 @@ Employee__c
 - `BackgroundCheckService.cls` → API Integration
 - `EmployeeAutoTaskAssignment.cls` → Default task logic
 - `EmployeeBackgroundTrigger.trigger` → Calls background check service on create
+- OnboardingService.cls-This class handles the bulk creation of onboarding tasks
 
 **LWC Component**
 - `employeeOnboardingDashboard.html`
