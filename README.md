@@ -78,3 +78,14 @@ How to use the app.
 ## Author
 - Name: SAKIREDDI JOSHIBABU
 - GitHub: [https://github.com/joshisakireddi-cpu](https:/joshisakireddi-cpu/github.com/)
+
+                                                                                   screenshorts of UI part
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ec6cf633-a649-460e-a6b6-7aaf36713fd9" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/14127c92-c8cb-4cc9-89c7-6fdb798609c2" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c46aaa9f-c967-4097-8c76-b71f46047196" />
+
+
+
